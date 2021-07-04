@@ -11,14 +11,14 @@ public class Gold {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Date startDate;
-    private Date endDate;
+    private String startDate;
+    private String endDate;
     @Enumerated(EnumType.STRING)
     private MetalType metalType;
     private Float course;
     private Date requestDate;
 
-    public Gold(Long id, Date startDate, Date endDate, MetalType metalType, Float course, Date requestDate) {
+    public Gold(Long id, String startDate, String endDate, MetalType metalType, Float course, Date requestDate) {
         this.id = id;
         this.startDate = startDate;
         this.endDate = endDate;
@@ -27,7 +27,7 @@ public class Gold {
         this.requestDate = requestDate;
     }
 
-    public Gold(Date startDate, Date endDate, MetalType metalType, Float course, Date requestDate) {
+    public Gold(String startDate, String endDate, MetalType metalType, Float course, Date requestDate) {
         this.startDate = startDate;
         this.endDate = endDate;
         this.metalType = metalType;
@@ -46,19 +46,19 @@ public class Gold {
         this.id = id;
     }
 
-    public Date getStartDate() {
+    public String getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(Date startDate) {
+    public void setStartDate(String startDate) {
         this.startDate = startDate;
     }
 
-    public Date getEndDate() {
+    public String getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(Date endDate) {
+    public void setEndDate(String endDate) {
         this.endDate = endDate;
     }
 

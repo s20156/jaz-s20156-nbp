@@ -1,20 +1,24 @@
 package jaz.s20156.jazs20156nbp.service;
 
 import jaz.s20156.jazs20156nbp.model.Gold;
-import jaz.s20156.jazs20156nbp.repository.GoldRepository;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
+import org.springframework.web.client.RestTemplate;
 
 @Service
 public class GoldService {
-    private final GoldRepository goldRepository;
+    private final RestTemplate restTemplate;
 
-    public GoldService(GoldRepository goldRepository) {
-        this.goldRepository = goldRepository;
+    public GoldService(RestTemplate restTemplate) {
+        this.restTemplate = restTemplate;
     }
 
-    public List<Gold> getAll() {
-        return goldRepository.findAll();
+    public Gold getPrice (String startDate, String endDate) {
+        try {
+            String url = "http://api.nbp.pl/api/cenyzlota/" + startDate + "/" + endDate + "/?format=json";
+            Gold forEntity = restTemplate.getForEntity(url, Gold.class).getBody();
+            return forEntity;
+        } catch (Exception e) {
+            throw new NullPointerException();
+        }
     }
 }
